@@ -1,7 +1,6 @@
 $(function () {
     var initUrl = '/o2o/shopadmin/getshopinitinfo';
     var registerShopUrl = '/o2o/shopadmin/registershop';
-    alert(initUrl);
     getShopInitInfo();
     function getShopInitInfo() {
         $.getJSON(initUrl, function (data) {
@@ -9,7 +8,7 @@ $(function () {
                 var tempHtml = '';
                 var tempAreaHtml = '';
                 data.shopCategoryList.map(function (item, index) {
-                    tempHtml += '<option data-id="' + item.shopCategory + '">'
+                    tempHtml += '<option data-id="' + item.shopCategoryId + '">'
                         + item.shopCategoryName + '</option>'
                 });
                 data.areaList.map(function (item, index) {
@@ -32,7 +31,7 @@ $(function () {
                 }).data('id')
             }
             shop.area = {
-                area : $('#area').find('option').not(function () {
+                areaId : $('#area').find('option').not(function () {
                     return !this.selected
                 }).data('id')
             }
@@ -40,6 +39,12 @@ $(function () {
             var formData = new FormData()
             formData.append('shopImg', shopImg)
             formData.append('shopStr', JSON.stringify(shop))
+            var verifyCodeActual = $('#j_captcha').val()
+            if(!verifyCodeActual){
+                $.toast('请输入验证码！')
+                return
+            }
+            formData.append('verifyCodeActual', verifyCodeActual)
             $.ajax({
                 url : registerShopUrl,
                 type : 'POST',
@@ -53,6 +58,7 @@ $(function () {
                     }else{
                         $.toast('提交失败！' + data.errMsg)
                     }
+                    $('#captcha_img').click()
                 }
             });
         });
