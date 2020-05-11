@@ -5,6 +5,7 @@ import com.imooc.o2o.entity.Area;
 import com.imooc.o2o.entity.PersonInfo;
 import com.imooc.o2o.entity.Shop;
 import com.imooc.o2o.entity.ShopCategory;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +18,7 @@ public class ShopDaoTest extends BaseTest {
     private ShopDao shopDao;
 
     @Test
+    @Ignore
     public void testInsertShop(){
         Shop shop = new Shop();
         PersonInfo owner = new PersonInfo();
@@ -41,6 +43,7 @@ public class ShopDaoTest extends BaseTest {
     }
 
     @Test
+    @Ignore
     public void testUpdateShop(){
         Shop shop = new Shop();
         shop.setShopId(1L);
@@ -49,5 +52,12 @@ public class ShopDaoTest extends BaseTest {
         shop.setLastEditTime(new Date());
         int effectedNum = shopDao.updateShop(shop);
         assertEquals(1, effectedNum);
+    }
+
+    @Test
+    public void testQueryByShopId(){
+        long shopId = 1;
+        Shop shop = shopDao.queryByShopId(shopId);
+        System.out.println(shop.toString());
     }
 }
