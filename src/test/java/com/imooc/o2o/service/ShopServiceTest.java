@@ -8,6 +8,7 @@ import com.imooc.o2o.entity.Shop;
 import com.imooc.o2o.entity.ShopCategory;
 import com.imooc.o2o.enums.ShopStateEnum;
 import com.imooc.o2o.exceptions.ShopOperationException;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,6 +17,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class ShopServiceTest extends BaseTest {
@@ -23,6 +26,7 @@ public class ShopServiceTest extends BaseTest {
     private ShopService shopService;
 
     @Test
+    @Ignore
     public void testAddShop() throws FileNotFoundException {
         Shop shop = new Shop();
         PersonInfo owner = new PersonInfo();
@@ -48,6 +52,7 @@ public class ShopServiceTest extends BaseTest {
     }
 
     @Test
+    @Ignore
     public void testModifyShop() throws ShopOperationException, FileNotFoundException{
         Shop shop = new Shop();
         shop.setShopId(1L);
@@ -56,5 +61,17 @@ public class ShopServiceTest extends BaseTest {
         InputStream is = new FileInputStream(shopImg);
         ShopExecution shopExecution = shopService.modifyShop(shop, is, "dabai.jpg");
         System.out.println("新的图片地址为" + shopExecution.getShop().getShopImg());
+    }
+
+    @Test
+    public void testGetShopList(){
+        Shop shopCondition = new Shop();
+        ShopCategory sc = new ShopCategory();
+        sc.setShopCategoryId(3L);
+        shopCondition.setShopCategory(sc);
+        ShopExecution se = shopService.getShopList(shopCondition, 2, 5);
+        System.out.println(se.getShopList().size());
+        System.out.println(se.getCount());
+
     }
 }
