@@ -8,6 +8,7 @@ public class Product {
     private String productName;
     private String productDesc;
     private String imgAddr; //简略图
+    private String promotionPrice;
     private String normalPrice;
     private Integer priority;
     private Date createTime;
@@ -112,5 +113,13 @@ public class Product {
 
     public void setShop(Shop shop) {
         this.shop = shop;
+    }
+
+    public String getPromotionPrice() {
+        return promotionPrice;
+    }
+
+    public void setPromotionPrice(String promotionPrice) {
+        this.promotionPrice = promotionPrice;
     }
 }
