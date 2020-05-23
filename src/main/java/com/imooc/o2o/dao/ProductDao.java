@@ -9,4 +9,8 @@ public interface ProductDao {
      * @return
      */
     int insertProduct(Product product);
+
+    Product queryProductById(long productId);
+
+    int updateProduct(Product product);
 }

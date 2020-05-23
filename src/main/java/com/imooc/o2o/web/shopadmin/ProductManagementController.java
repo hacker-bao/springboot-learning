@@ -82,9 +82,7 @@ public class ProductManagementController {
         if(product != null && thumbnail != null && productImgList.size() > 0){
             try{
                 Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
-                Shop shop = new Shop();
-                shop.setShopId(currentShop.getShopId());
-                product.setShop(shop);
+                product.setShop(currentShop);
                 ProductExecution pe = productService.addProduct(product, thumbnail, productImgList);
                 if(pe.getState() == ProductStateEnum.SUCCESS.getState()) {
                     modelMap.put("success", true);

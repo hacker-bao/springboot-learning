@@ -11,4 +11,6 @@ public interface ProductImgDao {
      * @return
      */
     int batchInsertProductImg(List<ProductImg> productImgList);
+
+    int deleteProductImgByProductId(long productId);
 }

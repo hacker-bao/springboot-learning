@@ -54,6 +54,16 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+    @Override
+    public Product getProductById(long productId) {
+        return productDao.queryProductById(productId);
+    }
+
+    @Override
+    public ProductExecution modifyProduct(Product product, ImageHolder thumbnail, List<ImageHolder> productImgHolderList) throws ProductOperationException {
+        return null;
+    }
+
     private void addProductImgList(Product product, List<ImageHolder> productImgHolderList) {
         String dest = PathUtil.getShopImagePath(product.getShop().getShopId());
         List<ProductImg> productImgList = new ArrayList<>();
