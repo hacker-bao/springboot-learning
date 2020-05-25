@@ -70,6 +70,23 @@ public class ProductDaoTest extends BaseTest {
     }
 
     @Test
+    public void testBQueryProductList() throws Exception {
+        Product productCondition = new Product();
+        // 分页查询，预期返回三条结果
+        List<Product> productList = productDao.queryProductList(productCondition, 0, 3);
+        assertEquals(3, productList.size());
+        // 查询名称为测试的商品总数
+        int count = productDao.queryProductCount(productCondition);
+        assertEquals(13, count);
+        // 使用商品名称模糊查询，预期返回两条结果
+        productCondition.setProductName("测试");
+        productList = productDao.queryProductList(productCondition, 0, 3);
+        assertEquals(3, productList.size());
+        count = productDao.queryProductCount(productCondition);
+        assertEquals(7, count);
+    }
+
+    @Test
     public void testCQueryProductByProductId() throws Exception{
         long productId = 1;
         ProductImg productImg1 = new ProductImg();
