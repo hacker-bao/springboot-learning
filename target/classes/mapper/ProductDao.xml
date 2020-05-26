@@ -102,7 +102,6 @@
         create_time,
         last_edit_time,
         enable_status,
-        point,
         product_category_id,
         shop_id
         FROM

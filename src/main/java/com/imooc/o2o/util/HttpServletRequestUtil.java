@@ -13,7 +13,7 @@ public class HttpServletRequestUtil {
 
     public static long getLong(HttpServletRequest request, String key){
         try{
-            return Long.valueOf(request.getParameter(key));
+            return Long.parseLong(request.getParameter(key));
         }catch (Exception e){
             return -1;
         }
@@ -21,7 +21,7 @@ public class HttpServletRequestUtil {
 
     public static double getDouble(HttpServletRequest request, String key){
         try{
-            return Double.valueOf(request.getParameter(key));
+            return Double.parseDouble(request.getParameter(key));
         }catch (Exception e){
             return -1d;
         }
@@ -29,7 +29,7 @@ public class HttpServletRequestUtil {
 
     public static boolean getBoolean(HttpServletRequest request, String key){
         try{
-            return Boolean.valueOf(request.getParameter(key));
+            return Boolean.parseBoolean(request.getParameter(key));
         }catch (Exception e){
             return false;
         }
